@@ -83,6 +83,6 @@ for v in videos:
 
 
 df = pd.DataFrame(metadata)
-csv_path = os.path.join(dir, "output_manifest.csv")
+csv_path = os.path.join(dir, "video_metadata.csv")
 df.to_csv(csv_path, index=False, encoding='utf-8-sig')
 print(df)
