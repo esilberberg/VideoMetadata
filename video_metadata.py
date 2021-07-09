@@ -55,10 +55,15 @@ for v in videos:
     metadata["Digitization_Date"].append("2019")
     metadata["File_Type"].append(run_exiftool("-*MIMEType*", v))
 
-    bytes = int(run_exiftool("-*MediaDataSize*", v))
-    mb = bytes/1024/1024
-    file_size = str(round(mb, 2))
-    metadata["File_Size"].append(file_size)
+    try:
+        bytes = int(run_exiftool("-*MediaDataSize*", v))
+        mb = bytes/1024/1024
+        file_size = str(round(mb, 2))
+        metadata["File_Size"].append(file_size)
+    except ValueError:
+        metadata["File_Size"].append("ValueError")
+    except:
+        metadata["File_Size"].append("CalcError")
 
     time = run_exiftool("-*Duration*", v)
     metadata["Duration"].append(time[0:7])
